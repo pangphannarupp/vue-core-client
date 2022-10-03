@@ -4,7 +4,7 @@
 
     <ul>
       <li><button v-on:click="showToast">Toast Message</button></li>
-      <li><button v-on:click="camera">Camera</button></li>
+      <li><button v-on:click="camera">Show Camera</button></li>
     </ul>
   </div>
 </template>
@@ -19,13 +19,15 @@ export default defineComponent({
   },
   methods: {
     showToast() {
-      this.$core.showToast({
-        message: 'Hello Vue To Native',
-        duration: 'SHORT'
-      });
+      // this.$core.showToast({
+      //   message: 'Hello Vue',
+      //   duration: 'SHORT'
+      // });
+      this.$core.showToast('Hello Vue','SHORT');
     },
     camera() {
-      this.$core.camera();
+      // this.$core.showCamera();
+      this.$core.showCamera();
     }
   },
 });

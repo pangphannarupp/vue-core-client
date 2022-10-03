@@ -14,7 +14,7 @@ export default class Core {
         });
     }
    
-    camera() {
+    showCamera() {
         this.execute('CAMERA_PLUGIN', {});
     }
 }
