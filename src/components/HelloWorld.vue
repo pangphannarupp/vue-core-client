@@ -19,14 +19,12 @@ export default defineComponent({
   },
   methods: {
     showToast() {
-      // this.$core.showToast({
-      //   message: 'Hello Vue',
-      //   duration: 'SHORT'
-      // });
-      this.$core.showToast('Hello Vue','SHORT');
+      this.$core.showToast({
+        message: 'Hello Vue',
+        duration: 'SHORT'
+      });
     },
     camera() {
-      // this.$core.showCamera();
       this.$core.showCamera();
     }
   },

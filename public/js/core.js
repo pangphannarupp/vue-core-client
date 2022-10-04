@@ -5,7 +5,7 @@ var core = {}
 * used to call function execute in Native Code
 */
 var execute = function(key, param) {
-    Core.execute(JSON.stringify({
+    JavaScriptInterface.execute(JSON.stringify({
         'key': key,
         'param': param
     }));
@@ -19,10 +19,10 @@ core.listener = function(result) {
     console.log("Listen result from native => " + result);
 }
 
-core.showToast = function(message, duration) {
+core.showToast = function(param) {
     execute('TOAST_MESSAGE_PLUGIN', {
-       'message': message,
-       'duration': duration,
+       'message': param['message'],
+       'duration': param['duration'],
    });
 }
 

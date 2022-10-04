@@ -1,7 +1,7 @@
 export default class Core {
 
     execute(key: string, param: any) {
-        (window as any).Core.execute(JSON.stringify({
+        (window as any).JavaScriptInterface.execute(JSON.stringify({
             key: key, 
             param: param
         }));
@@ -10,7 +10,7 @@ export default class Core {
     showToast(param: any) {
         this.execute('TOAST_MESSAGE_PLUGIN', {
             message: param['message'],
-            duration: ['duration']
+            duration: param['duration']
         });
     }
    
