@@ -4,7 +4,7 @@
 
     <ul>
       <li><button v-on:click="showToast">Toast Message</button></li>
-      <li><button v-on:click="camera">Camera</button></li>
+      <li><button v-on:click="camera">Show Camera</button></li>
     </ul>
   </div>
 </template>

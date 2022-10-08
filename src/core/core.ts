@@ -1,7 +1,7 @@
 export default class Core {
 
     execute(key: string, param: any) {
-        (window as any).Core.execute(JSON.stringify({
+        (window as any).JavaScriptInterface.execute(JSON.stringify({
             key: key, 
             param: param
         }));
@@ -17,7 +17,7 @@ export default class Core {
         });
     }
    
-    camera() {
+    showCamera() {
         this.execute('CAMERA_PLUGIN', {});
     }
 }
