@@ -10,7 +10,10 @@ export default class Core {
     showToast(param: any) {
         this.execute('TOAST_MESSAGE_PLUGIN', {
             message: param['message'],
-            duration: ['duration']
+            duration: ['duration'],
+            callback: function(result: any) {
+             alert('Result => ' + JSON.stringify(result));
+            }
         });
     }
    

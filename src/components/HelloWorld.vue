@@ -18,14 +18,24 @@ export default defineComponent({
     msg: String,
   },
   methods: {
+    alertDialog(result: any) {
+      this.$core.alertDialog(result);
+    },
     showToast() {
       this.$core.showToast({
-        message: 'Hello Vue To Native',
-        duration: 'SHORT'
+        message: 'Hello JS',
+        duration: 'SHORT',
+        callback: function (result: any) {
+          console.log("callback is => " + JSON.stringify(result));
+        }
       });
     },
     camera() {
-      this.$core.camera();
+      this.$core.showCamera({
+        callback: function (result: any) {
+          console.log("callback is => " + JSON.stringify(result));
+        }
+      });
     }
   },
 });
@@ -36,14 +46,17 @@ export default defineComponent({
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
