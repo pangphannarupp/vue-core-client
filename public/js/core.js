@@ -1,4 +1,4 @@
-var core = {}
+var core = {};
 var callback = null;
 
 /**
@@ -22,6 +22,33 @@ core.callback = function(result) {
     }
 }
 
+//APPLICATION_PLUGIN
+core.appInfo = function(param) {
+    callback = param['callback'] || null;
+    execute('APPLICATION_PLUGIN', {
+        type: 'app_info'
+    });
+}
+
+core.exitApp = function() {
+    execute('APPLICATION_PLUGIN', {
+        type: 'exit',
+        status: 0,
+    });
+}
+
+//BIOMETRIC_PLUGIN
+core.biometricAuthentication = function(param) {
+    callback = param['callback'] || null;
+    execute('BIOMETRIC_PLUGIN', param);
+}
+
+//DATE_PICKER_PLUGIN
+core.showDatePicker = function(param) {
+    callback = param['callback'] || null;
+    execute('DATE_PICKER_PLUGIN', param);
+}
+
 core.dialog = function(param) {
     callback = param['callback'] || null;
     execute('DIALOG_PLUGIN', param);
@@ -35,6 +62,11 @@ core.showToast = function(param) {
 core.showCamera = function(param) {
     callback = param['callback'] || null;
     execute('CAMERA_PLUGIN', param);
+}
+
+core.speechToText = function(param) {
+    callback = param['callback'] || null;
+    execute('SPEECH_TO_TEXT_PLUGIN', param);
 }
 
 // Alert Result

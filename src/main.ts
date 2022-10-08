@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
-import Core from './core/core';
+// import Core from './core/core';
 
 const app = createApp(App);
 
