@@ -36,6 +36,9 @@ export default defineComponent({
     this.$core.addEventListener('onDestroy', function() {
       console.log('listener => destroy');
     });
+    this.$core.addEventListener('onBackPressed', function() {
+      console.log('listener => onBackPressed');
+    });
     this.$core.addEventListener('onNetworkChange', this.connection);
   },
   methods: {
