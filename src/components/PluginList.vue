@@ -5,11 +5,14 @@
     <ul>
       <li><button v-on:click="appInfo">App Info</button></li>
       <li><button v-on:click="biometricAuthentication">Biometric Authentication</button></li>
+      <li><button v-on:click="browseQRCode">Browse QR Code</button></li>
       <li><button v-on:click="showDatePicker">Date Picker</button></li>
       <li><button v-on:click="exitApp">Exit App</button></li>
-      <li><button v-on:click="showToast">Toast Message</button></li>
+      <li><button v-on:click="externalBrowser">External Browser</button></li>
+      <li><button v-on:click="scanQRCode">Scan QR Code</button></li>
       <li><button v-on:click="camera">Show Camera</button></li>
       <li><button v-on:click="speechToText">Speech to text</button></li>
+      <li><button v-on:click="showToast">Toast Message</button></li>
     </ul>
   </div>
 </template>
@@ -22,7 +25,41 @@ export default defineComponent({
   props: {
     msg: String,
   },
+  mounted: function() {
+    this.$core.addEventListener('ready', this.appInfo);
+    this.$core.addEventListener('onPause', function() {
+      console.log('listener => pause');
+    });
+    this.$core.addEventListener('onResume', function() {
+      console.log('listener => resume');
+    });
+    this.$core.addEventListener('onDestroy', function() {
+      console.log('listener => destroy');
+    });
+    this.$core.addEventListener('onNetworkChange', this.connection);
+  },
   methods: {
+    connection(isAvailable: boolean) {
+      if(!isAvailable) {
+        this.$core.alertDialog("connection is " + isAvailable);
+      }
+    },
+    browseQRCode() {
+      var that = this.$core;
+      this.$core.browseQRCode({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    scanQRCode() {
+      var that = this.$core;
+      this.$core.scanQRCode({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
     appInfo() {
       var that = this.$core;
       this.$core.appInfo({
@@ -42,6 +79,11 @@ export default defineComponent({
     exitApp() {
       this.$core.exitApp();
     },
+    externalBrowser() {
+      this.$core.externalBrowser({
+        url: 'https://www.youtube.com/'
+      });
+    },
     biometricAuthentication() {
       var that = this.$core;
       this.$core.biometricAuthentication({
@@ -60,9 +102,6 @@ export default defineComponent({
       this.$core.showToast({
         message: 'Hello JS',
         duration: 'SHORT',
-        callback: function (result: any) {
-          that.alertDialog(result);
-        }
       });
     },
     camera() {
@@ -95,15 +134,21 @@ h3 {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  margin: 0;
+    padding: 0px;
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
+  display: list-item;
+  margin: 10px 10px;
 }
 
 a {
   color: #42b983;
+}
+
+button {
+  width: 100%;
+    height: 40px;
 }
 </style>

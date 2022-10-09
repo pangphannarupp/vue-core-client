@@ -1,5 +1,6 @@
 var core = {};
 var callback = null;
+var eventList = [];
 
 /**
 * JavascriptInterface
@@ -14,6 +15,33 @@ var execute = function(key, param) {
 
 /**
 * Event Listener
+* used to listen response from Native
+*/
+core.onEventListener = function(eventType, status) {
+    for(var i = 0; i < eventList.length; i++) {
+        if(eventList[i].eventType == eventType) {
+            if(eventType == "onNetworkChange") {
+                eventList[i].function(status);
+            } else {
+                eventList[i].function();
+            }
+        }
+    }
+}
+
+/**
+* Add Event Listener
+* used to add event at client
+*/
+core.addEventListener = function(eventType, func) {
+    eventList.push({
+        eventType: eventType,
+        function: func
+    });
+}
+
+/**
+* Callback Listener
 * used to listen response from Native
 */
 core.callback = function(result) {
@@ -49,6 +77,11 @@ core.showDatePicker = function(param) {
     execute('DATE_PICKER_PLUGIN', param);
 }
 
+//EXTERNAL_BROWSER_PLUGIN
+core.externalBrowser = function(param) {
+    execute('EXTERNAL_BROWSER_PLUGIN', param);
+}
+
 core.dialog = function(param) {
     callback = param['callback'] || null;
     execute('DIALOG_PLUGIN', param);
@@ -67,6 +100,21 @@ core.showCamera = function(param) {
 core.speechToText = function(param) {
     callback = param['callback'] || null;
     execute('SPEECH_TO_TEXT_PLUGIN', param);
+}
+
+core.scanQRCode = function(param) {
+    callback = param['callback'] || null;
+    execute('QR_CODE_PLUGIN', {
+        is_custom_ui: false,
+        type: 'scan'
+    });
+}
+
+core.browseQRCode = function(param) {
+    callback = param['callback'] || null;
+    execute('QR_CODE_PLUGIN', {
+        type: 'browse'
+    });
 }
 
 // Alert Result

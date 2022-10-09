@@ -4,5 +4,6 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'? '.': '/'         
+  publicPath: process.env.NODE_ENV === 'production'? '.': '/',
+  outputDir: process.env.NODE_ENV === 'production' ? 'dist/content/' : 'dist/content-vue/',         
 }
