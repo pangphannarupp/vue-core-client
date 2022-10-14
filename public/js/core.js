@@ -50,7 +50,9 @@ core.callback = function(result) {
     }
 }
 
-//APPLICATION_PLUGIN
+/**
+* get app info
+*/
 core.appInfo = function(param) {
     callback = param['callback'] || null;
     execute('APPLICATION_PLUGIN', {
@@ -58,6 +60,9 @@ core.appInfo = function(param) {
     });
 }
 
+/**
+* exit app
+*/
 core.exitApp = function() {
     execute('APPLICATION_PLUGIN', {
         type: 'exit',
@@ -65,43 +70,58 @@ core.exitApp = function() {
     });
 }
 
-//BIOMETRIC_PLUGIN
+/**
+* login by biometric
+*/
 core.biometricAuthentication = function(param) {
     callback = param['callback'] || null;
     execute('BIOMETRIC_PLUGIN', param);
 }
 
-//DATE_PICKER_PLUGIN
-core.showDatePicker = function(param) {
-    callback = param['callback'] || null;
-    execute('DATE_PICKER_PLUGIN', param);
-}
-
-//EXTERNAL_BROWSER_PLUGIN
-core.externalBrowser = function(param) {
-    execute('EXTERNAL_BROWSER_PLUGIN', param);
-}
-
-core.dialog = function(param) {
-    callback = param['callback'] || null;
-    execute('DIALOG_PLUGIN', param);
-}
-
-core.showToast = function(param) {
-    callback = param['callback'] || null;
-    execute('TOAST_MESSAGE_PLUGIN', param);
-}
-
+/**
+* open camera
+*/
 core.showCamera = function(param) {
     callback = param['callback'] || null;
     execute('CAMERA_PLUGIN', param);
 }
 
-core.speechToText = function(param) {
+/**
+* alert date picker
+*/
+core.showDatePicker = function(param) {
     callback = param['callback'] || null;
-    execute('SPEECH_TO_TEXT_PLUGIN', param);
+    execute('DATE_PICKER_PLUGIN', param);
 }
 
+/**
+* alert dialog
+*/
+core.dialog = function(param) {
+    callback = param['callback'] || null;
+    execute('DIALOG_PLUGIN', param);
+}
+
+/**
+* open external browser
+*/
+core.externalBrowser = function(param) {
+    execute('EXTERNAL_BROWSER_PLUGIN', param);
+}
+
+/**
+* browse image qr
+*/
+core.browseQRCode = function(param) {
+    callback = param['callback'] || null;
+    execute('QR_CODE_PLUGIN', {
+        type: 'browse'
+    });
+}
+
+/**
+* open qr code
+*/
 core.scanQRCode = function(param) {
     callback = param['callback'] || null;
     execute('QR_CODE_PLUGIN', {
@@ -110,14 +130,25 @@ core.scanQRCode = function(param) {
     });
 }
 
-core.browseQRCode = function(param) {
+/**
+* open speech to text
+*/
+core.speechToText = function(param) {
     callback = param['callback'] || null;
-    execute('QR_CODE_PLUGIN', {
-        type: 'browse'
-    });
+    execute('SPEECH_TO_TEXT_PLUGIN', param);
 }
 
-// Alert Result
+/**
+* show toast
+*/
+core.showToast = function(param) {
+    callback = param['callback'] || null;
+    execute('TOAST_MESSAGE_PLUGIN', param);
+}
+
+/**
+* alert dialog
+*/
 core.alertDialog = function(message) {
     core.dialog({
         type: 'alert',
