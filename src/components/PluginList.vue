@@ -3,6 +3,30 @@
     <h1>{{ msg }}</h1>
 
     <ul>
+      <li><button v-on:click="showBannerVungleAds">Show Vungle Banner</button></li>
+      <li><button v-on:click="hideBannerVungleAds">Hide Vungle Banner</button></li>
+      <li><button v-on:click="showIntertistialVungleAds">Show Vungle Interstitial</button></li>
+      <li><button v-on:click="showRewardedVungleAds">Show Vungle RewardedVideo</button></li>
+
+      <li><button v-on:click="showBannerFacebbokAds">Show Facebook Banner</button></li>
+      <li><button v-on:click="showIntertistialFacebbokAds">Show Facebook Interstitial</button></li>
+      <li><button v-on:click="showRewardedFacebbokAds">Show Facebook RewardedVideo</button></li>
+
+      <li><button v-on:click="showBannerAdmob">Show Admob Banner</button></li>
+      <li><button v-on:click="hideBannerAdmob">Hide Admob Banner</button></li>
+      <li><button v-on:click="showIntertistialAdmob">Show Admob Interstitial</button></li>
+      <li><button v-on:click="showRewardedAdmob">Show Admob Rewarded</button></li>
+
+      <li><button v-on:click="showBannerIronSource">Show Iron Source Banner</button></li>
+      <li><button v-on:click="hideBannerIronSource">Hide Iron Source Banner</button></li>
+      <li><button v-on:click="showIntertistialIronSource">Show Iron Source Interstitial</button></li>
+      <li><button v-on:click="showRewardedVideoIronSource">Show Iron Source RewardedVideo</button></li>
+      
+      <li><button v-on:click="showBannerUnity">Show Unity Banner</button></li>
+      <li><button v-on:click="hideBannerUnity">Hide Unity Banner</button></li>
+      <li><button v-on:click="showIntertistialUnity">Show Unity Interstitial</button></li>
+      <li><button v-on:click="showRewardedVideoUnity">Show Unity RewardedVideo</button></li>
+      
       <li><button v-on:click="appInfo">App Info</button></li>
       <li><button v-on:click="biometricAuthentication">Biometric Authentication</button></li>
       <li><button v-on:click="browseQRCode">Browse QR Code</button></li>
@@ -26,7 +50,7 @@ export default defineComponent({
     msg: String,
   },
   mounted: function() {
-    this.$core.addEventListener('ready', this.appInfo);
+    this.$core.addEventListener('ready', this.initialize);
     this.$core.addEventListener('onPause', function() {
       console.log('listener => pause');
     });
@@ -42,6 +66,188 @@ export default defineComponent({
     this.$core.addEventListener('onNetworkChange', this.connection);
   },
   methods: {
+    initialize() {
+      var that = this.$core;
+      that.unityads.initialize({
+        unityGameID: '4207969',
+        testMode: false,
+      });
+
+      that.ironsourceads.initialize({});
+
+      that.admob.initialize({});
+
+      that.facebookads.initialize({});
+
+      that.vungleads.initialize({
+        callback: function(response: any) {
+          alert(JSON.stringify(response));
+        }
+      });
+    },
+    showBannerVungleAds() {
+      var that = this.$core;
+      that.vungleads.showBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    hideBannerVungleAds() {
+      var that = this.$core;
+      that.vungleads.hideBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showIntertistialVungleAds() {
+      var that = this.$core;
+      that.vungleads.showInterstitial({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showRewardedVungleAds() {
+      var that = this.$core;
+      that.vungleads.showRewarded({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+
+    showBannerFacebbokAds() {
+      var that = this.$core;
+      that.facebookads.showBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showIntertistialFacebbokAds() {
+      var that = this.$core;
+      that.facebookads.showInterstitial({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showRewardedFacebbokAds() {
+      var that = this.$core;
+      that.facebookads.showRewarded({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+
+    showBannerAdmob() {
+      var that = this.$core;
+      that.admob.showBanner({
+        adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    hideBannerAdmob() {
+      var that = this.$core;
+      that.admob.hideBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showIntertistialAdmob() {
+      var that = this.$core;
+      that.admob.showInterstitial({
+        adUnitId: 'ca-app-pub-3940256099942544/1033173712',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showRewardedAdmob() {
+      var that = this.$core;
+      that.admob.showRewarded({
+        adUnitId: 'ca-app-pub-4761500786576152~8215465788',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+
+    showIntertistialIronSource() {
+      var that = this.$core;
+      that.ironsourceads.showInterstitial({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showRewardedVideoIronSource() {
+      var that = this.$core;
+      that.ironsourceads.showRewardedVideo({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showBannerIronSource() {
+      var that = this.$core;
+      that.ironsourceads.showBanner({
+        adUnitId: 'banner',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    hideBannerIronSource() {
+      var that = this.$core;
+      that.ironsourceads.hideBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+
+    hideBannerUnity() {
+      var that = this.$core;
+      that.unityads.hideBanner({
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showBannerUnity() {
+      var that = this.$core;
+      that.unityads.showBanner({
+        adUnitId: 'banner',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showIntertistialUnity() {
+      var that = this.$core;
+      that.unityads.showInterstitial({
+        adUnitId: 'video',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
+    showRewardedVideoUnity() {
+      var that = this.$core;
+      that.unityads.showRewardedVideo({
+        adUnitId: 'rewardedVideo',
+        callback: function (result: any) {
+          that.alertDialog(result);
+        }
+      });
+    },
     connection(isAvailable: boolean) {
       if(!isAvailable) {
         this.$core.alertDialog("connection is " + isAvailable);
