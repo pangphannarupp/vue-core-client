@@ -68,31 +68,31 @@ core.generateCallback = function(param) {
 core.vungleads = {}
 core.vungleads.initialize = function(param) {
     core.generateCallback(param);
-    param['type'] = 'initialize';
+    param['type'] = 'web_initialize';
     execute('VUNGLE_ADS_PLUGIN', param);
 }
 //showInterstitial
 core.vungleads.showInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('VUNGLE_ADS_PLUGIN', param);
 }
 //showRewardedVideo
 core.vungleads.showRewarded = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showRewarded';
+    param['type'] = 'web_showRewarded';
     execute('VUNGLE_ADS_PLUGIN', param);
 }
 //showBanner
 core.vungleads.showBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showBanner';
+    param['type'] = 'web_showBanner';
     execute('VUNGLE_ADS_PLUGIN', param);
 }
 //hideBanner
 core.vungleads.hideBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'hideBanner';
+    param['type'] = 'web_hideBanner';
     execute('VUNGLE_ADS_PLUGIN', param);
 }
 
@@ -101,31 +101,31 @@ core.vungleads.hideBanner = function(param) {
 core.facebookads = {}
 core.facebookads.initialize = function(param) {
     core.generateCallback(param);
-    param['type'] = 'initialize';
+    param['type'] = 'web_initialize';
     execute('FACEBOOK_ADS_PLUGIN', param);
 }
 //showInterstitial
 core.facebookads.showInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('FACEBOOK_ADS_PLUGIN', param);
 }
 //showRewardedVideo
 core.facebookads.showRewarded = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showRewarded';
+    param['type'] = 'web_showRewarded';
     execute('FACEBOOK_ADS_PLUGIN', param);
 }
 //showBanner
 core.facebookads.showBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showBanner';
+    param['type'] = 'web_showBanner';
     execute('FACEBOOK_ADS_PLUGIN', param);
 }
 //hideBanner
 core.facebookads.hideBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'hideBanner';
+    param['type'] = 'web_hideBanner';
     execute('FACEBOOK_ADS_PLUGIN', param);
 }
 
@@ -134,25 +134,25 @@ core.facebookads.hideBanner = function(param) {
 core.admob = {}
 core.admob.initialize = function(param) {
     core.generateCallback(param);
-    param['type'] = 'initialize';
+    param['type'] = 'web_initialize';
     execute('ADMOB_PLUGIN', param);
 }
 //showInterstitial
 core.admob.showInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('ADMOB_PLUGIN', param);
 }
 //showRewardedVideo
 core.admob.showRewarded = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showRewarded';
+    param['type'] = 'web_showRewarded';
     execute('ADMOB_PLUGIN', param);
 }
 //showBanner
 core.admob.showBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showBanner';
+    param['type'] = 'web_showBanner';
     execute('ADMOB_PLUGIN', param);
 }
 //hideBanner
@@ -167,43 +167,43 @@ core.admob.hideBanner = function(param) {
 core.ironsourceads = {}
 core.ironsourceads.initialize = function(param) {
     core.generateCallback(param);
-    param['type'] = 'initialize';
+    param['type'] = 'web_initialize';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //loadInterstitial
 core.ironsourceads.loadInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'loadInterstitial';
+    param['type'] = 'web_loadInterstitial';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //showInterstitial
 core.ironsourceads.showInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //loadRewardedVideo
 core.ironsourceads.loadRewardedVideo = function(param) {
     core.generateCallback(param);
-    param['type'] = 'loadRewardedVideo';
+    param['type'] = 'web_loadRewardedVideo';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //showRewardedVideo
 core.ironsourceads.showRewardedVideo = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //showBanner
 core.ironsourceads.showBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showBanner';
+    param['type'] = 'web_showBanner';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 //hideBanner
 core.ironsourceads.hideBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'hideBanner';
+    param['type'] = 'web_hideBanner';
     execute('IRON_SOURCE_ADS_PLUGIN', param);
 }
 
@@ -212,45 +212,45 @@ core.ironsourceads.hideBanner = function(param) {
 core.unityads = {}
 core.unityads.initialize = function(param) {
     core.generateCallback(param);
-    param['type'] = 'initialize';
+    param['type'] = 'web_initialize';
     execute('UNITY_ADS_PLUGIN', param);
 }
 //showInterstitial
 core.unityads.showInterstitial = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showInterstitial';
+    param['type'] = 'web_showInterstitial';
     execute('UNITY_ADS_PLUGIN', param);
 }
 //showRewardedVideo
 core.unityads.showRewardedVideo = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showRewardedVideo';
+    param['type'] = 'web_showRewardedVideo';
     execute('UNITY_ADS_PLUGIN', param);
 }
 //showBanner
 core.unityads.showBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'showBanner';
+    param['type'] = 'web_showBanner';
     execute('UNITY_ADS_PLUGIN', param);
 }
 //hideBanner
 core.unityads.hideBanner = function(param) {
     core.generateCallback(param);
-    param['type'] = 'hideBanner';
+    param['type'] = 'web_hideBanner';
     execute('UNITY_ADS_PLUGIN', param);
 }
 
 //APPLICATION_PLUGIN
 core.appInfo = function(param) {
     core.generateCallback(param);
-    param['type'] = 'app_info';
+    param['type'] = 'web_app_info';
     execute('APPLICATION_PLUGIN', param);
 }
 
 core.exitApp = function() {
     var param = {};
     core.generateCallback(param);
-    param['type'] = 'exit';
+    param['type'] = 'web_exit';
     param['status'] = 0;
     execute('APPLICATION_PLUGIN', param);
 }
@@ -258,6 +258,7 @@ core.exitApp = function() {
 //BIOMETRIC_PLUGIN
 core.biometricAuthentication = function(param) {
     core.generateCallback(param);
+    param['isWebContent'] = true;
     execute('BIOMETRIC_PLUGIN', param);
 }
 
@@ -279,36 +280,39 @@ core.dialog = function(param) {
 
 core.showToast = function(param) {
     core.generateCallback(param);
+    param['isWebContent'] = true;
     execute('TOAST_MESSAGE_PLUGIN', param);
 }
 
 core.showCamera = function(param) {
     core.generateCallback(param);
+    param['isWebContent'] = true;
     execute('CAMERA_PLUGIN', param);
 }
 
 core.speechToText = function(param) {
     core.generateCallback(param);
+    param['isWebContent'] = true;
     execute('SPEECH_TO_TEXT_PLUGIN', param);
 }
 
 core.scanQRCode = function(param) {
     core.generateCallback(param);
     param['is_custom_ui'] = false;
-    param['type'] = 'scan';
+    param['type'] = 'web_scan';
     execute('QR_CODE_PLUGIN', param);
 }
 
 core.browseQRCode = function(param) {
     core.generateCallback(param);
-    param['type'] = 'browse';
+    param['type'] = 'web_browse';
     execute('QR_CODE_PLUGIN', param);
 }
 
 // Alert Result
 core.alertDialog = function(message) {
     core.dialog({
-        type: 'alert',
+        type: 'web_alert',
         text_title: 'Result',
         text_message: message,
         text_ok: 'OK',
