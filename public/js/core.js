@@ -1,6 +1,5 @@
 var core = {};
-// var callback = null;
-var callbackList = [];
+var callback = null;
 var eventList = [];
 
 /**
@@ -8,24 +7,35 @@ var eventList = [];
 * used to call function execute in Native Code
 */
 var execute = function(key, param) {
-    JavascriptInterface.execute(JSON.stringify({
-        'key': key,
-        'param': param
-    }));
+    param['isWebContent'] = true;
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        window.webkit.messageHandlers.JavascriptInterface.postMessage(JSON.stringify({
+            'key': key,
+            'param': param
+        }));
+    } else if (/android/i.test(navigator.userAgent)) {
+        JavascriptInterface.execute(JSON.stringify({
+            'key': key,
+            'param': param
+        }));
+    }
+}
+
+core.sample = function(param) {
+    callback = param['callback'] || null;
+    execute('SAMPLE_PLUGIN', {
+        message: 'Hello Vue'
+    });
 }
 
 /**
 * Event Listener
 * used to listen response from Native
 */
-core.onEventListener = function(eventType, status) {
+core.onEventListener = function(eventType) {
     for(var i = 0; i < eventList.length; i++) {
         if(eventList[i].eventType == eventType) {
-            if(eventType == "onNetworkChange") {
-                eventList[i].function(status);
-            } else {
-                eventList[i].function();
-            }
+            eventList[i].function();
         }
     }
 }
@@ -45,226 +55,36 @@ core.addEventListener = function(eventType, func) {
 * Callback Listener
 * used to listen response from Native
 */
-core.callback = function(result, scf) {
-    // if(callback != null) {
-    //     callback(result);
-    // }
-    for(var i = 0; i < callbackList.length; i++) {
-        if(callbackList[i].scf == scf) {
-            callbackList[i].function(result);
-        }
+core.callback = function(result) {
+    if(callback != null) {
+        callback(result);
     }
-}
-
-core.generateCallback = function(param) {
-    var functionName = 'scf' + Date.now();
-    var callback = param.callback || null;
-    callbackList.push({scf: functionName, function: callback});
-    param['scf'] = functionName;
-}
-
-//Vungle Ads
-//Initialize
-core.vungleads = {}
-core.vungleads.initialize = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_initialize';
-    execute('VUNGLE_ADS_PLUGIN', param);
-}
-//showInterstitial
-core.vungleads.showInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('VUNGLE_ADS_PLUGIN', param);
-}
-//showRewardedVideo
-core.vungleads.showRewarded = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showRewarded';
-    execute('VUNGLE_ADS_PLUGIN', param);
-}
-//showBanner
-core.vungleads.showBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showBanner';
-    execute('VUNGLE_ADS_PLUGIN', param);
-}
-//hideBanner
-core.vungleads.hideBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_hideBanner';
-    execute('VUNGLE_ADS_PLUGIN', param);
-}
-
-//Facebook Ads
-//Initialize
-core.facebookads = {}
-core.facebookads.initialize = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_initialize';
-    execute('FACEBOOK_ADS_PLUGIN', param);
-}
-//showInterstitial
-core.facebookads.showInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('FACEBOOK_ADS_PLUGIN', param);
-}
-//showRewardedVideo
-core.facebookads.showRewarded = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showRewarded';
-    execute('FACEBOOK_ADS_PLUGIN', param);
-}
-//showBanner
-core.facebookads.showBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showBanner';
-    execute('FACEBOOK_ADS_PLUGIN', param);
-}
-//hideBanner
-core.facebookads.hideBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_hideBanner';
-    execute('FACEBOOK_ADS_PLUGIN', param);
-}
-
-//Admob Ads
-//Initialize
-core.admob = {}
-core.admob.initialize = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_initialize';
-    execute('ADMOB_PLUGIN', param);
-}
-//showInterstitial
-core.admob.showInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('ADMOB_PLUGIN', param);
-}
-//showRewardedVideo
-core.admob.showRewarded = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showRewarded';
-    execute('ADMOB_PLUGIN', param);
-}
-//showBanner
-core.admob.showBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showBanner';
-    execute('ADMOB_PLUGIN', param);
-}
-//hideBanner
-core.admob.hideBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'hideBanner';
-    execute('ADMOB_PLUGIN', param);
-}
-
-//IronSource Ads
-//Initialize
-core.ironsourceads = {}
-core.ironsourceads.initialize = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_initialize';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//loadInterstitial
-core.ironsourceads.loadInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_loadInterstitial';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//showInterstitial
-core.ironsourceads.showInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//loadRewardedVideo
-core.ironsourceads.loadRewardedVideo = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_loadRewardedVideo';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//showRewardedVideo
-core.ironsourceads.showRewardedVideo = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//showBanner
-core.ironsourceads.showBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showBanner';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-//hideBanner
-core.ironsourceads.hideBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_hideBanner';
-    execute('IRON_SOURCE_ADS_PLUGIN', param);
-}
-
-//Unity Ads
-//Initialize
-core.unityads = {}
-core.unityads.initialize = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_initialize';
-    execute('UNITY_ADS_PLUGIN', param);
-}
-//showInterstitial
-core.unityads.showInterstitial = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showInterstitial';
-    execute('UNITY_ADS_PLUGIN', param);
-}
-//showRewardedVideo
-core.unityads.showRewardedVideo = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showRewardedVideo';
-    execute('UNITY_ADS_PLUGIN', param);
-}
-//showBanner
-core.unityads.showBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_showBanner';
-    execute('UNITY_ADS_PLUGIN', param);
-}
-//hideBanner
-core.unityads.hideBanner = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_hideBanner';
-    execute('UNITY_ADS_PLUGIN', param);
 }
 
 //APPLICATION_PLUGIN
 core.appInfo = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_app_info';
-    execute('APPLICATION_PLUGIN', param);
+    callback = param['callback'] || null;
+    execute('APPLICATION_PLUGIN', {
+        type: 'app_info'
+    });
 }
 
 core.exitApp = function() {
-    var param = {};
-    core.generateCallback(param);
-    param['type'] = 'web_exit';
-    param['status'] = 0;
-    execute('APPLICATION_PLUGIN', param);
+    execute('APPLICATION_PLUGIN', {
+        type: 'exit',
+        status: 0,
+    });
 }
 
 //BIOMETRIC_PLUGIN
 core.biometricAuthentication = function(param) {
-    core.generateCallback(param);
-    param['isWebContent'] = true;
+    callback = param['callback'] || null;
     execute('BIOMETRIC_PLUGIN', param);
 }
 
 //DATE_PICKER_PLUGIN
 core.showDatePicker = function(param) {
-    core.generateCallback(param);
+    callback = param['callback'] || null;
     execute('DATE_PICKER_PLUGIN', param);
 }
 
@@ -274,45 +94,44 @@ core.externalBrowser = function(param) {
 }
 
 core.dialog = function(param) {
-    core.generateCallback(param);
+    callback = param['callback'] || null;
     execute('DIALOG_PLUGIN', param);
 }
 
 core.showToast = function(param) {
-    core.generateCallback(param);
-    param['isWebContent'] = true;
+    callback = param['callback'] || null;
     execute('TOAST_MESSAGE_PLUGIN', param);
 }
 
 core.showCamera = function(param) {
-    core.generateCallback(param);
-    param['isWebContent'] = true;
+    callback = param['callback'] || null;
     execute('CAMERA_PLUGIN', param);
 }
 
 core.speechToText = function(param) {
-    core.generateCallback(param);
-    param['isWebContent'] = true;
+    callback = param['callback'] || null;
     execute('SPEECH_TO_TEXT_PLUGIN', param);
 }
 
 core.scanQRCode = function(param) {
-    core.generateCallback(param);
-    param['is_custom_ui'] = false;
-    param['type'] = 'web_scan';
-    execute('QR_CODE_PLUGIN', param);
+    callback = param['callback'] || null;
+    execute('QR_CODE_PLUGIN', {
+        is_custom_ui: false,
+        type: 'scan'
+    });
 }
 
 core.browseQRCode = function(param) {
-    core.generateCallback(param);
-    param['type'] = 'web_browse';
-    execute('QR_CODE_PLUGIN', param);
+    callback = param['callback'] || null;
+    execute('QR_CODE_PLUGIN', {
+        type: 'browse'
+    });
 }
 
 // Alert Result
 core.alertDialog = function(message) {
     core.dialog({
-        type: 'web_alert',
+        type: 'alert',
         text_title: 'Result',
         text_message: message,
         text_ok: 'OK',

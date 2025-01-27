@@ -3,37 +3,37 @@
     <h1>{{ msg }}</h1>
 
     <ul>
-      <!-- <li><button v-on:click="showBannerVungleAds">Show Vungle Banner</button></li>
+      <li><button v-on:click="showBannerVungleAds">Show Vungle Banner</button></li>
       <li><button v-on:click="hideBannerVungleAds">Hide Vungle Banner</button></li>
       <li><button v-on:click="showIntertistialVungleAds">Show Vungle Interstitial</button></li>
-      <li><button v-on:click="showRewardedVungleAds">Show Vungle RewardedVideo</button></li> -->
+      <li><button v-on:click="showRewardedVungleAds">Show Vungle RewardedVideo</button></li>
 
-      <!-- <li><button v-on:click="showBannerFacebbokAds">Show Facebook Banner</button></li>
+      <li><button v-on:click="showBannerFacebbokAds">Show Facebook Banner</button></li>
       <li><button v-on:click="showIntertistialFacebbokAds">Show Facebook Interstitial</button></li>
-      <li><button v-on:click="showRewardedFacebbokAds">Show Facebook RewardedVideo</button></li> -->
+      <li><button v-on:click="showRewardedFacebbokAds">Show Facebook RewardedVideo</button></li>
 
-      <!-- <li><button v-on:click="showBannerAdmob">Show Admob Banner</button></li>
+      <li><button v-on:click="showBannerAdmob">Show Admob Banner</button></li>
       <li><button v-on:click="hideBannerAdmob">Hide Admob Banner</button></li>
       <li><button v-on:click="showIntertistialAdmob">Show Admob Interstitial</button></li>
-      <li><button v-on:click="showRewardedAdmob">Show Admob Rewarded</button></li> -->
+      <li><button v-on:click="showRewardedAdmob">Show Admob Rewarded</button></li>
 
-      <!-- <li><button v-on:click="showBannerIronSource">Show Iron Source Banner</button></li>
+      <li><button v-on:click="showBannerIronSource">Show Iron Source Banner</button></li>
       <li><button v-on:click="hideBannerIronSource">Hide Iron Source Banner</button></li>
       <li><button v-on:click="showIntertistialIronSource">Show Iron Source Interstitial</button></li>
-      <li><button v-on:click="showRewardedVideoIronSource">Show Iron Source RewardedVideo</button></li> -->
+      <li><button v-on:click="showRewardedVideoIronSource">Show Iron Source RewardedVideo</button></li>
       
-      <!-- <li><button v-on:click="showBannerUnity">Show Unity Banner</button></li>
+      <li><button v-on:click="showBannerUnity">Show Unity Banner</button></li>
       <li><button v-on:click="hideBannerUnity">Hide Unity Banner</button></li>
       <li><button v-on:click="showIntertistialUnity">Show Unity Interstitial</button></li>
-      <li><button v-on:click="showRewardedVideoUnity">Show Unity RewardedVideo</button></li> -->
+      <li><button v-on:click="showRewardedVideoUnity">Show Unity RewardedVideo</button></li>
       
       <li><button v-on:click="appInfo">App Info</button></li>
-      <!-- <li><button v-on:click="biometricAuthentication">Biometric Authentication</button></li> -->
-      <!-- <li><button v-on:click="browseQRCode">Browse QR Code</button></li>
+      <li><button v-on:click="biometricAuthentication">Biometric Authentication</button></li>
+      <li><button v-on:click="browseQRCode">Browse QR Code</button></li>
       <li><button v-on:click="showDatePicker">Date Picker</button></li>
       <li><button v-on:click="exitApp">Exit App</button></li>
       <li><button v-on:click="externalBrowser">External Browser</button></li>
-      <li><button v-on:click="scanQRCode">Scan QR Code</button></li> -->
+      <li><button v-on:click="scanQRCode">Scan QR Code</button></li>
       <li><button v-on:click="camera">Show Camera</button></li>
       <li><button v-on:click="speechToText">Speech to text</button></li>
       <li><button v-on:click="showToast">Toast Message</button></li>
